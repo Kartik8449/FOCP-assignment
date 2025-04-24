@@ -1,0 +1,28 @@
+class StudentManagementSystem {
+private:
+    std::vector<Student> students;
+
+public:
+    // Add new student
+    void addStudent(const Student& student) {
+        students.push_back(student);
+    }
+
+    // Search student by roll number
+    Student* searchStudent(int rollNumber) {
+        for (auto& student : students) {
+            if (student.getRollNumber() == rollNumber) {
+                return &student;
+            }
+        }
+        return nullptr;
+    }
+
+    // Display all students
+    void displayAllStudents() const {
+        for (const auto& student : students) {
+            student.displayInfo();
+            std::cout << "-----------------------------\n";
+        }
+    }
+};
