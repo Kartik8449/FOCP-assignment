@@ -1,0 +1,30 @@
+int main() {
+    StudentManagementSystem sms;
+
+    // Creating students
+    Student s1("Alice", 101, 3.8);
+    s1.addCourse("Math");
+    s1.addCourse("Physics");
+
+    Student s2("Bob", 102, 3.5);
+    s2.addCourse("Chemistry");
+
+    sms.addStudent(s1);
+    sms.addStudent(s2);
+
+    // Display all students
+    std::cout << "All Students:\n";
+    sms.displayAllStudents();
+
+    // Search and update
+    Student* student = sms.searchStudent(101);
+    if (student) {
+        student->setCGPA(3.9);
+        student->addCourse("Computer Science");
+    }
+
+    std::cout << "\nUpdated Info:\n";
+    student->displayInfo();
+
+    return 0;
+}
