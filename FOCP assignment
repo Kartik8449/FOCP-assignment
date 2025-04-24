@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+class Student {
+private:
+    std::string name;
+    int rollNumber;
+    float cgpa;
+    std::vector<std::string> courses;
+
+public:
+    // Default constructor
+    Student() : name("Unknown"), rollNumber(0), cgpa(0.0) {}
+
+    // Parameterized constructor
+    Student(std::string name, int rollNumber, float cgpa) {
+        this->name = name;
+        this->rollNumber = rollNumber;
+        setCGPA(cgpa);
+    }
+
+    // Copy constructor
+    Student(const Student& other) {
+        name = other.name;
+        rollNumber = other.rollNumber;
+        cgpa = other.cgpa;
+        courses = other.courses;
+    }
+
+    // Destructor
+    ~Student() {
+        // Clean-up if required
+    }
+
+    // Add course
+    void addCourse(const std::string& course) {
+        if (std::find(courses.begin(), courses.end(), course) == courses.end()) {
+            courses.push_back(course);
+        } else {
+            std::cout << "Course already added.\n";
+        }
+    }
+
+    // Set CGPA with validation
+    void setCGPA(float newCGPA) {
+        if (newCGPA >= 0.0 && newCGPA <= 4.0) {
+            cgpa = newCGPA;
+        } else {
+            std::cout << "Invalid CGPA! Must be between 0.0 and 4.0\n";
+        }
+    }
+
+    // Display student info
+    void displayInfo() const {
+        std::cout << "Name: " << name << "\n"
+                  << "Roll Number: " << rollNumber << "\n"
+                  << "CGPA: " << cgpa << "\n"
+                  << "Courses Enrolled:\n";
+        for (const auto& course : courses) {
+            std::cout << " - " << course << "\n";
+        }
+    }
+
+    // Getters
+    int getRollNumber() const {
+        return rollNumber;
+    }
+};
